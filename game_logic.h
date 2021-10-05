@@ -1,14 +1,11 @@
 #ifndef GAME_LOGIC_H
 #define GAME_LOGIC_H
 
-/*Returns as boolean whether a tag has occured, takes the player positionand the enemy positions*/
-bool Tag(Position_t* enemy, Position_t player);
+/*removes enemy and increases score when a tag has occured, 
+takes the player position and the enemy positions as well as the number of enemies*/
+bool Tag(Position_t enemy, Position_t player, uint8_t enemyNumber);
 
-/*Returns as boolean whether a new enemy spawn position is occupied, takes the new position, 
-the enemy positions and the player positions*/
-bool checkPosition(Position_t new, Position_t* enemy, Position_t player);
-
-/*Show gameover message and play sound*/
+/*Checks for if the player has run out of time and initiates the game over screen*/
 void gameOver();
 
 #endif
