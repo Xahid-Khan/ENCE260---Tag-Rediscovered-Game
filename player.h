@@ -9,7 +9,7 @@
 
 
 typedef struct {
-    char name[30];
+    // char* name[8];
     int16_t score;
     int16_t time;
     uint8_t x;
@@ -17,28 +17,29 @@ typedef struct {
 } player_t;
 
 /* This method will create and return a new player */
-player_t palyer_init();
+player_t player_init(void);
 
-/* check if player is moving and update accordingly */
+/* Move the current position UP by 1 block */
 void move_up(player_t* player);
 
+/* Move the current position DOWN by 1 block */
 void move_down(player_t* player);
 
+/* Move the current position LEFT by 1 block */
 void move_left(player_t* player);
 
+/* Move the current position RIGHT by 1 block */
 void move_right(player_t* player);
 
 /* update score when a tag is successful */
-void update_score();
+void update_score(player_t* player);
 
 /* returns the player's current score */
-int16_t get_score();
+int16_t get_score(player_t* player);
 
 /* add extra time (3 seconds) to the remaining time */
-int16_t update_time();
+int16_t update_game_time(player_t* player);
 
-/* return the remaining time */
-int16_t check_time();
 
 
 #endif
