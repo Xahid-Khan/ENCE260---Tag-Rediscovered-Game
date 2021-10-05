@@ -6,7 +6,8 @@ int main (void)
 {
     system_init ();
     welcome_message_display();
-    player_init();
+    player_t player = player_init();
+    game_over_message(400);
 
 
     while (1)
@@ -15,5 +16,5 @@ int main (void)
 
 
     }
-    
+
 }

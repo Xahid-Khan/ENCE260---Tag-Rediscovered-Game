@@ -23,6 +23,7 @@ system.o: ../../drivers/avr/system.c ../../drivers/avr/system.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 display_message.o: display_message.c display_message.h ../../drivers/avr/system.h ../../utils/pacer.h ../../utils/tinygl.h ../../fonts/font5x7_1.h  ../../drivers/navswitch.h
+	$(CC) -c $(CFLAGS) $< -o $@
 
 font.o: ../../utils/font.c ../../drivers/avr/system.h ../../utils/font.h
 	$(CC) -c $(CFLAGS) $< -o $@
