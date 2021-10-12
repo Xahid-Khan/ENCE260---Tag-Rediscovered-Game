@@ -63,5 +63,5 @@ void update_score(player_t* player)
 
 void update_time(player_t* player)
 {
-    player->time += 2;
+    player->time += 1;
 }
