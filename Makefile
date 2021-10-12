@@ -17,7 +17,7 @@ all: game.out
 # player.o: player.c player.h pio.h, sys
 # Compile: create object files from C source files.
 # game.o: game.c ../../drivers/avr/system.h ../../drivers/avr/system.h display_message.h
-game.o: game.c
+game.o: game.c play.h ../../drivers/avr/system.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 system.o: ../../drivers/avr/system.c ../../drivers/avr/system.h
@@ -53,17 +53,15 @@ cpu.o: cpu.c cpu.h ../../drivers/avr/system.h ../../utils/pacer.h player.h
 player.o: player.c player.h ../../drivers/avr/system.h ../../drivers/navswitch.h cpu.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-play.o: play.c play.h ../../drivers/avr/system.h ../../utils/tinygl.h player.h display_message.h ../../utils/pacer.h
+play.o: play.c play.h ../../drivers/avr/system.h ../../utils/tinygl.h player.h display_message.h ../../utils/pacer.h ../../drivers/navswitch.h cpu.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-game_logic.o: game_logic.c game_logic.h ../../drivers/avr/system.h game_logic.h cpu.h player.h display_message.h ../../utils/pacer.h
-	$(CC) -c $(CFLAGS) $< -o $@
 
 
 
 
 # Link: create ELF output file from object files.
-game.out: game.o system.o display_message.o player.o play.o pacer.o tinygl.o font.o timer.o display.o ledmat.o navswitch.o cpu.o game_logic.o
+game.out: game.o system.o display_message.o player.o play.o pacer.o tinygl.o font.o timer.o display.o ledmat.o navswitch.o cpu.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
 
