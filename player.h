@@ -10,7 +10,7 @@
 typedef struct {
     // char* name[8];
     uint16_t score;
-    uint16_t time;
+    uint32_t time;
     uint8_t x;
     uint8_t y;
 } player_t;

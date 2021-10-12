@@ -6,7 +6,7 @@
 
 #include "system.h"
 #include "navswitch.h"
-#include "pacer.h"
+#include "timer.h"
 #include "tinygl.h"
 #include "display_message.h"
 #include "player.h"
@@ -53,7 +53,6 @@ void move_player(player_t* player)
     }
 }
 
-
 /** This is the main game loop */
 void play (void)
 {
@@ -61,8 +60,9 @@ void play (void)
     navswitch_init();
     // pacer_init(PACER_RATE);
     tinygl_init (DISPLAY_TASK_RATE);
+    uint16_t time_constant = 31250;
     uint16_t cycle_counter = 0;
-    uint16_t timer_counter = 0;
+
     Position_t enemyPositions[wantedEnemies];
     tinygl_point_t cpuPoints[wantedEnemies];
 
@@ -73,11 +73,12 @@ void play (void)
 
     player_t player = player_init();
     tinygl_point_t playerPosition = tinygl_point(player.x, player.y);
+
     for(uint8_t i = 0; i <= wantedEnemies; i++) {
         spawnEnemy(enemyPositions, &player, i, wantedEnemies);
     }
 
-
+    timer_init();
     while (cycle_counter < player.time)
     {
         tinygl_update();
@@ -87,20 +88,19 @@ void play (void)
 
         /** update the position of the player on the grid */
         playerPosition = tinygl_point(player.x, player.y);
-        if (timer_counter >= 100) {
+        if (timer_get() >= time_constant) {
+            cycle_counter++;
+            timer_init();
+        }
+        
+        if  (timer_get() >= 310) {
             for(uint8_t i = 0; i < wantedEnemies; i++) {
                 cpuPoints[i] = tinygl_point(enemyPositions[i].x, enemyPositions[i].y);
             }
-            cycle_counter++;
-            timer_counter = 0;
         }
 
         Tag(enemyPositions, &player, wantedEnemies);
         play_display_update(playerPosition, cpuPoints);
-        timer_counter++;
-
-
-
     }
     game_over_message(player.score);
 }
