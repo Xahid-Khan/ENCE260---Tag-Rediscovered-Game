@@ -13,7 +13,7 @@
 #include "cpu.h"
 
 /** Updates the LED display on LED_MAT */
-static void play_display_update (tinygl_point_t pos);
+void play_display_update (tinygl_point_t pos);
 
 /** Entry point to the game and keeps the game in the loop */
 void play (void);

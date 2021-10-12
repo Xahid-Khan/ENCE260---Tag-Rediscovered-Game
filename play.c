@@ -23,7 +23,7 @@ static uint8_t wantedEnemies = 2;
     update it on the LED_MAT
     @pram tinygl_point_t
     */
-static void play_display_update (tinygl_point_t playerPosition, tinygl_point_t* cpuPoints)
+void play_display_update (tinygl_point_t playerPosition, tinygl_point_t* cpuPoints)
 {
     tinygl_clear();
     tinygl_draw_point (playerPosition, 1);

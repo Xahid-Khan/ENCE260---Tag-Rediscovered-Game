@@ -10,6 +10,7 @@
 #include "tinygl.h"
 #include "../fonts/font5x7_1.h"
 #include "../fonts/font3x5_1.h"
+#include <stdio.h>
 
 #define TINYGL_PACER_RATE 500
 #define TINYGL_MESSAGE_RATE 15
@@ -74,10 +75,10 @@ void game_over_message(uint16_t score)
 {
     system_init();
     char message[10] = "GAME OVER";
-    char number[4];
+    char number[5];
     sprintf(number, "%u", score);
 
-    char last_message[15];
+    char last_message[16];
     sprintf(last_message, "%s %s",  message, number);
     tinygl_init(TINYGL_PACER_RATE);
     tinygl_font_set(&font5x7_1);

@@ -33,11 +33,8 @@ void move_right(player_t* player);
 /* update score when a tag is successful */
 void update_score(player_t* player);
 
-/* returns the player's current score */
-int16_t get_score(player_t* player);
-
 /* add extra time (3 seconds) to the remaining time */
-int16_t update_game_time(player_t* player);
+void update_time(player_t* player);
 
 
 #endif

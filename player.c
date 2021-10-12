@@ -17,7 +17,7 @@ player_t player_init(void)
     player_t newplayer;
     // newplayer.name = "Tiger"
     newplayer.score = 0;
-    newplayer.time = 300;
+    newplayer.time = 500;
     newplayer.x = 2;
     newplayer.y = 3;
 
@@ -61,5 +61,5 @@ void update_score(player_t* player)
 
 void update_time(player_t* player)
 {
-    player->time += 30;
+    player->time += 45;
 }
