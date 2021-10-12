@@ -1,7 +1,8 @@
 /** @file game.c
-    @author Zahid Khan
+    @author Zahid Khan ZKH22
+    @author Thomas Mander TCM56
     @date 05 October 2021
-    @brief The start/entery to the game.
+    @brief The header file for display message module.
 */
 
 #ifndef DISPLAY_MESSAGE_H
