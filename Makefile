@@ -56,14 +56,11 @@ player.o: player.c player.h ../../drivers/avr/system.h ../../drivers/navswitch.h
 play.o: play.c play.h ../../drivers/avr/system.h ../../utils/tinygl.h player.h display_message.h ../../utils/pacer.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-game_logic.o: game_logic.c game_logic.h ../../drivers/avr/system.h game_logic.h cpu.h player.h display_message.h ../../utils/pacer.h
-	$(CC) -c $(CFLAGS) $< -o $@
-
 
 
 
 # Link: create ELF output file from object files.
-game.out: game.o system.o display_message.o player.o play.o pacer.o tinygl.o font.o timer.o display.o ledmat.o navswitch.o cpu.o game_logic.o
+game.out: game.o system.o display_message.o player.o play.o pacer.o tinygl.o font.o timer.o display.o ledmat.o navswitch.o cpu.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
 
