@@ -1,7 +1,8 @@
 /** @file game.c
-    @author Zahid Khan
+    @author Zahid Khan ZKH22
+    @author Thomas Mander TCM56
     @date 05 October 2021
-    @brief The start/entery to the game.
+    @brief The header file for display message module.
 */
 
 #ifndef DISPLAY_MESSAGE_H
@@ -14,6 +15,6 @@ void welcome_message_display(void);
 void startup_count(void);
 
 /* Shows the game over message at the end of the game and shows the total score player achieved */
-void game_over_message(uint16_t score);
+uint8_t game_over_message(uint16_t score);
 
 #endif

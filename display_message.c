@@ -1,7 +1,8 @@
 /** @file game.c
-    @author Zahid Khan
+    @author Zahid Khan ZKH22
+    @author Thomas Mander TCM56
     @date 05 October 2021
-    @brief This module is used for displaing messages on the LED mat.
+    @brief This module is used for displaying messages on the LED mat.
 */
 
 #include "system.h"
@@ -17,6 +18,8 @@
 
 /**
     "welcome_message_display" is a method which shows a welcome message to the player and keeps displying the message in a loop until a navswitch is pushed in the center to start the game. This method takes no arguments and returns void.
+    @pram void
+    @return void
 */
 void welcome_message_display (void)
 {
@@ -44,7 +47,10 @@ void welcome_message_display (void)
 }
 
 
-/* This method "startup_count" shows a count down from 3 to 1 and ends, takes no parameters and return void */
+/* This method "startup_count" shows a count down from 3 to 1 and ends, takes no parameters and return void
+    @pram void
+    @retrn void
+    */
 void startup_count(void)
 {
     system_init();
@@ -70,8 +76,12 @@ void startup_count(void)
 }
 
 
-/* This method "game_over_message" displays game over on LED mat and players' total SCORE at the end of the game. if player pushes the middle of navswitch the game will re-starts*/
-void game_over_message(uint16_t score)
+/** This method "game_over_message" displays game over on LED mat and players' total SCORE at the end of the game.
+    if player pushes the middle of navswitch the game will re-starts
+    @pram unit16_t SCORE
+    @return 1
+    */
+uint8_t game_over_message(uint16_t score)
 {
     system_init();
     char message[10] = "GAME OVER";
@@ -99,4 +109,5 @@ void game_over_message(uint16_t score)
         }
         tinygl_update();
     }
+    return 1;
 }
