@@ -71,7 +71,7 @@ void startup_count(void)
 
 
 /* This method "game_over_message" displays game over on LED mat and players' total SCORE at the end of the game. if player pushes the middle of navswitch the game will re-starts*/
-void game_over_message(uint16_t score)
+uint8_t game_over_message(uint16_t score)
 {
     system_init();
     char message[10] = "GAME OVER";
@@ -81,7 +81,8 @@ void game_over_message(uint16_t score)
     char last_message[16];
     sprintf(last_message, "%s %s",  message, number);
     tinygl_init(TINYGL_PACER_RATE);
-    tinygl_font_set(&font5x7_1);
+    tinygl_font_set(&font3x5_1);
+    tinygl_text_dir_set(TINYGL_TEXT_DIR_ROTATE);
     tinygl_text_speed_set(TINYGL_MESSAGE_RATE);
     tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
 
@@ -98,4 +99,5 @@ void game_over_message(uint16_t score)
         }
         tinygl_update();
     }
+    return 1;
 }

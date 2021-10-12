@@ -14,6 +14,6 @@ void welcome_message_display(void);
 void startup_count(void);
 
 /* Shows the game over message at the end of the game and shows the total score player achieved */
-void game_over_message(uint16_t score);
+uint8_t game_over_message(uint16_t score);
 
 #endif
