@@ -17,7 +17,7 @@ player_t player_init(void)
     // newplayer.name = "Tiger"
     newplayer.score = 0;
     newplayer.time = 30;
-    newplayer.x = 4;
+    newplayer.x = 2;
     newplayer.y = 3;
 
     return newplayer;
