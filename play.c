@@ -17,17 +17,18 @@
 #define DISPLAY_TASK_RATE (PACER_RATE / 250)
 #define PACER_RATE 250
 
-
+static uint8_t wantedEnemies = 2;
 /** This method will take the current position of the payer and
     update it on the LED_MAT
     @pram tinygl_point_t
     */
-static void play_display_update (tinygl_point_t pos)
+static void play_display_update (tinygl_point_t playerPosition, tinygl_point_t* cpuPoints)
 {
     tinygl_clear();
-    tinygl_draw_point (pos, 1);
-    tinygl_draw_point(tinygl_point(2, 3), 1);
-    tinygl_draw_point(tinygl_point(4, 3), 1);
+    tinygl_draw_point (playerPosition, 1);
+    for(uint8_t i = 0; i < wantedEnemies; i++) {
+        tinygl_draw_point(cpuPoints[i], 1);
+    }
     tinygl_update();
 }
 
@@ -62,6 +63,8 @@ void play (void)
     tinygl_init (DISPLAY_TASK_RATE);
     uint16_t cycle_counter = 0;
     uint16_t timer_counter = 0;
+    Position_t enemyPositions[wantedEnemies];
+    tinygl_point_t cpuPoints[wantedEnemies];
 
 
     welcome_message_display();
@@ -69,10 +72,10 @@ void play (void)
 
 
     player_t player = player_init();
+    for(uint8_t i = 0; i < wantedEnemies; i++) {
+        spawnEnemy(enemyPositions, &player);
+    }
 
-
-    tinygl_point_t pos;
-    play_display_update(tinygl_point(player.x, player.y));
 
     while (cycle_counter < player.time)
     {
@@ -81,13 +84,19 @@ void play (void)
         move_player(&player);
 
         /** update the position of the player on the grid */
-        pos = tinygl_point(player.x, player.y);
-        play_display_update(pos);
+        tinygl_point_t playerPosition = tinygl_point(player.x, player.y);
 
-        if (timer_counter == 500) {
+
+        if (timer_counter >= 500) {
+            for(uint8_t i = 0; i < wantedEnemies; i++) {
+                cpuPoints[i] = tinygl_point(enemyPositions[i].x, enemyPositions[i].y);
+            }
             cycle_counter++;
             timer_counter = 0;
         }
+
+        Tag(enemyPositions, &player, wantedEnemies);
+        play_display_update(playerPosition, cpuPoints);
         timer_counter++;
 
     }

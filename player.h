@@ -7,11 +7,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-
 typedef struct {
     // char* name[8];
-    int16_t score;
-    int16_t time;
+    uint16_t score;
+    uint16_t time;
     uint8_t x;
     uint8_t y;
 } player_t;
@@ -39,7 +38,6 @@ int16_t get_score(player_t* player);
 
 /* add extra time (3 seconds) to the remaining time */
 int16_t update_game_time(player_t* player);
-
 
 
 #endif

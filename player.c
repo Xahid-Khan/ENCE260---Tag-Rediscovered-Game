@@ -6,6 +6,7 @@
 
 #include "system.h"
 #include "player.h"
+#include "cpu.h"
 // #include <stdlib.h>
 
 

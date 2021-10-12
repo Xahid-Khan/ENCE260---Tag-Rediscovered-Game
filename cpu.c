@@ -4,10 +4,10 @@
 #include "pacer.h"
 #include <stdlib.h>
 
-uint8_t wantedEnemies = 2;
+static uint8_t enemyNumber = 0;
 
 /*Spawns one enemy ensuring it is on a non-occupied LED, takes the enemy positions, the player positions and the number of enemies*/
-void spawnEnemy(Position_t* enemyPositions, player_t* playerPosition, uint8_t* enemyNumber)
+void spawnEnemy(Position_t* enemyPositions, player_t* playerPosition)
 {
     /*initialises a new enemy and a boolean for if the enenmy is in an occupied position*/
     bool isOccupied;
@@ -19,7 +19,7 @@ void spawnEnemy(Position_t* enemyPositions, player_t* playerPosition, uint8_t* e
         enemy.x = 1+rand()%5;
         enemy.y = 1+rand()%7;
         /*Checks the new enemy position against previous enemy positions*/
-        for(uint8_t i = 0; i < *enemyNumber; i++) {
+        for(uint8_t i = 0; i < enemyNumber; i++) {
             bool isSameX = (enemy.x == enemyPositions[i].x);
             bool isSameY = (enemy.y == enemyPositions[i].y);
             /*if the area is occupied by an existing enemy set the boolean for this as true*/
@@ -37,11 +37,25 @@ void spawnEnemy(Position_t* enemyPositions, player_t* playerPosition, uint8_t* e
     } while(isOccupied);
 
     /*add new enemy to array and increase the number of enemies*/
-    enemyPositions[*enemyNumber] = enemy;
-    *enemyNumber += 1;
+    enemyPositions[enemyNumber] = enemy;
+    enemyNumber += 1;
 }
 
-
+/*Takes the positions of the enemies, the number of enemies and the player struct and
+deletes an enemy if the player and it are on the same space.*/
+void Tag(Position_t* enemies, player_t* player, uint8_t enemyNumber)
+{
+    /*Runs through all enemies and checks if theire positions are the same as the player*/
+    for(uint8_t i = 0; i < enemyNumber; i++) {
+        bool isSameX = enemies[i].x == player->x;
+        bool isSameY = enemies[i].y == player->y;
+        /*If positions are the same, remove the enemy and increase the score*/
+        if(isSameX && isSameY) {
+            update_score(player);
+            deleteEnemy(enemies[i], enemyNumber);
+        }
+    }
+}
 
 /*Takes all enemies, a position in the enemy array and the number of enemies and removes the specified enemy from the array while decreasing the number of enemies by 1*/
 void deleteEnemy(Position_t* enemyPositions, uint8_t* enemyNumber, uint8_t enemy)

@@ -12,6 +12,8 @@ typedef struct {
 void deleteEnemies(Position_t* enemyPositions, uint8_t* enemyNumber, uint8_t enemy);
 
 /*Spawns one enemy ensuring it is on a non-occupied LED, takes the enemy positions, the player positions and the number of enemies*/
-void spawnEnemy(Position_t* enemyPositions, player_t*, uint8_t* enemyNumber);
+void spawnEnemy(Position_t* enemyPositions, player_t* playerPosition);
+
+void Tag(Position_t* enemies, player_t* player, uint8_t enemyNumber);
 
 #endif

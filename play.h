@@ -10,6 +10,7 @@
 
 #include "tinygl.h"
 #include "player.h"
+#include "cpu.h"
 
 /** Updates the LED display on LED_MAT */
 static void play_display_update (tinygl_point_t pos);

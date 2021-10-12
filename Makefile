@@ -50,7 +50,7 @@ navswitch.o: ../../drivers/navswitch.c ../../drivers/avr/delay.h ../../drivers/a
 cpu.o: cpu.c cpu.h ../../drivers/avr/system.h ../../utils/pacer.h player.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-player.o: player.c player.h ../../drivers/avr/system.h ../../drivers/navswitch.h
+player.o: player.c player.h ../../drivers/avr/system.h ../../drivers/navswitch.h cpu.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 play.o: play.c play.h ../../drivers/avr/system.h ../../utils/tinygl.h player.h display_message.h ../../utils/pacer.h
