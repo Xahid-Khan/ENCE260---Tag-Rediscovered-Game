@@ -13,9 +13,9 @@
 #include "cpu.h"
 
 
-#define NAVSWITCH_TASK_RATE (PACER_RATE / 100)
+// #define NAVSWITCH_TASK_RATE (PACER_RATE / 100)
 #define DISPLAY_TASK_RATE (PACER_RATE / 250)
-#define PACER_RATE 500
+#define PACER_RATE 250
 
 
 /** This method will take the current position of the payer and
@@ -25,8 +25,10 @@
 static void play_display_update (tinygl_point_t pos)
 {
     tinygl_clear();
-    tinygl_update();
     tinygl_draw_point (pos, 1);
+    tinygl_draw_point(tinygl_point(2, 3), 1);
+    tinygl_draw_point(tinygl_point(4, 3), 1);
+    tinygl_update();
 }
 
 
@@ -55,29 +57,38 @@ void move_player(player_t* player)
 void play (void)
 {
     system_init ();
-    pacer_init(PACER_RATE);
-    // welcome_message_display();
+    navswitch_init();
+    // pacer_init(PACER_RATE);
+    tinygl_init (DISPLAY_TASK_RATE);
+    uint16_t cycle_counter = 0;
+    uint16_t timer_counter = 0;
+
+
+    welcome_message_display();
     startup_count();
 
-    player_t player = player_init();
-    // position_t cpu_1 = ;
-    // position_t cpu_2 = ;
 
-    // system_init ();
-    tinygl_init (DISPLAY_TASK_RATE);
-    navswitch_init();
+    player_t player = player_init();
+
+
     tinygl_point_t pos;
     play_display_update(tinygl_point(player.x, player.y));
 
-    while (1)
+    while (cycle_counter < player.time)
     {
-        navswitch_update();
         tinygl_update();
+        navswitch_update();
         move_player(&player);
 
         /** update the position of the player on the grid */
         pos = tinygl_point(player.x, player.y);
         play_display_update(pos);
+
+        if (timer_counter == 500) {
+            cycle_counter++;
+            timer_counter = 0;
+        }
+        timer_counter++;
 
     }
     game_over_message(player.score);
