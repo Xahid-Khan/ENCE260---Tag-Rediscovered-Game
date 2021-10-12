@@ -1,7 +1,8 @@
 /** @file game.c
-    @author Zahid Khan
+    @author Zahid Khan ZKH22
+    @author Thomas Mander TCM56
     @date 12 October 2021
-    @brief This module is used for displaing messages on the LED mat.
+    @brief This module is used an entry to the game and calls required functoins in order to play the game.
 */
 
 #include "system.h"
@@ -13,7 +14,6 @@
 #include "cpu.h"
 
 
-// #define NAVSWITCH_TASK_RATE (PACER_RATE / 100)
 #define PACER_RATE 250
 #define DISPLAY_TASK_RATE (PACER_RATE / 250)
 
@@ -22,6 +22,7 @@ static uint8_t wantedEnemies = 2;
 /** This method will take the current position of the payer and
     update it on the LED_MAT
     @pram tinygl_point_t
+    @return void
     */
 void play_display_update (tinygl_point_t playerPosition, tinygl_point_t* cpuPoints)
 {
@@ -36,6 +37,7 @@ void play_display_update (tinygl_point_t playerPosition, tinygl_point_t* cpuPoin
 /** This Method will update the position of the player based on the input from
     JOY_STICK
     @pram player_t
+    @return void
     */
 void move_player(player_t* player)
 {
@@ -53,7 +55,11 @@ void move_player(player_t* player)
     }
 }
 
-/** This is the main game loop */
+
+/** This is the main game loop which initiates required modules and call the required
+    funcitons in an order and keep updating the LED mat if the navswitch is pressed.
+    @pram void
+    @return void*/
 void play (void)
 {
     system_init ();
@@ -102,5 +108,9 @@ void play (void)
         Tag(enemyPositions, &player, wantedEnemies);
         play_display_update(playerPosition, cpuPoints);
     }
-    game_over_message(player.score);
+
+
+    if (game_over_message(player.score) == 1) {
+        play();
+    }
 }

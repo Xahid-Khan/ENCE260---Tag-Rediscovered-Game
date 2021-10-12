@@ -17,7 +17,7 @@ all: game.out
 # player.o: player.c player.h pio.h, sys
 # Compile: create object files from C source files.
 # game.o: game.c ../../drivers/avr/system.h ../../drivers/avr/system.h display_message.h
-game.o: game.c
+game.o: game.c play.h ../../drivers/avr/system.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 system.o: ../../drivers/avr/system.c ../../drivers/avr/system.h
@@ -53,9 +53,8 @@ cpu.o: cpu.c cpu.h ../../drivers/avr/system.h ../../utils/pacer.h player.h
 player.o: player.c player.h ../../drivers/avr/system.h ../../drivers/navswitch.h cpu.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-play.o: play.c play.h ../../drivers/avr/system.h ../../utils/tinygl.h player.h display_message.h ../../utils/pacer.h ../../drivers/avr/timer0.h
+play.o: play.c play.h ../../drivers/avr/system.h ../../utils/tinygl.h player.h display_message.h ../../utils/pacer.h ../../drivers/navswitch.h cpu.h ../../drivers/avr/timer.h
 	$(CC) -c $(CFLAGS) $< -o $@
-
 
 
 

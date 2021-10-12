@@ -1,7 +1,8 @@
 /** @file game.c
-    @author Zahid Khan
+    @author Zahid Khan ZKH22
+    @author Thomas Mander TCM56
     @date 05 October 2021
-    @brief This module is used for displaing messages on the LED mat.
+    @brief This module is used for initiating PLAYER and contain all the player related functions (movement, score, time, etc.).
 */
 
 #include "system.h"
@@ -11,7 +12,8 @@
 
 
 
-
+/**
+    */
 player_t player_init(void)
 {
     player_t newplayer;
