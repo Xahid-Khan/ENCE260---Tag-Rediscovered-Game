@@ -113,4 +113,9 @@ void play (void)
     if (game_over_message(player.score) == 1) {
         play();
     }
+
+
+    if (game_over_message(player.score) == 1) {
+        play();
+    }
 }
