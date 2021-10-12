@@ -75,10 +75,10 @@ void game_over_message(uint16_t score)
     system_init();
     char message[10] = "GAME OVER";
     char number[4];
-    // sprintf(number, "%s", score);
+    sprintf(number, "%u", score);
 
-    char last_message[25];
-    sprintf(last_message, "%s %s",  message, score);
+    char last_message[15];
+    sprintf(last_message, "%s %s",  message, number);
     tinygl_init(TINYGL_PACER_RATE);
     tinygl_font_set(&font5x7_1);
     tinygl_text_speed_set(TINYGL_MESSAGE_RATE);
