@@ -56,11 +56,6 @@ player.o: player.c player.h ../../drivers/avr/system.h ../../drivers/navswitch.h
 play.o: play.c play.h ../../drivers/avr/system.h ../../utils/tinygl.h player.h display_message.h ../../utils/pacer.h ../../drivers/navswitch.h cpu.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d1a56b41b3e828fe746f6dd8249bc465652795d5
-
 
 
 # Link: create ELF output file from object files.
