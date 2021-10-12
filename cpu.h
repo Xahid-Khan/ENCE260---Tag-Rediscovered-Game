@@ -8,12 +8,9 @@ typedef struct {
     uint8_t y;
 } Position_t;
 
-/*Takes all enemies, a position in the enemy array and the number of enemies and removes the specified enemy from the array while decreasing the number of enemies by 1*/
-void deleteEnemies(Position_t* enemyPositions, uint8_t* enemyNumber, uint8_t enemy);
-
 /*Spawns one enemy ensuring it is on a non-occupied LED, takes the enemy positions, the player positions and the number of enemies*/
-void spawnEnemy(Position_t* enemyPositions, player_t* playerPosition);
+void spawnEnemy(Position_t* enemyPositions, player_t* playerPosition, uint8_t newPosition, uint8_t wantedEnemies);
 
-void Tag(Position_t* enemies, player_t* player, uint8_t enemyNumber);
+void Tag(Position_t* enemies, player_t* player, uint8_t wantedEnemies);
 
 #endif

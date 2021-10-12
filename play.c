@@ -14,8 +14,9 @@
 
 
 // #define NAVSWITCH_TASK_RATE (PACER_RATE / 100)
-#define DISPLAY_TASK_RATE (PACER_RATE / 250)
 #define PACER_RATE 250
+#define DISPLAY_TASK_RATE (PACER_RATE / 250)
+
 
 static uint8_t wantedEnemies = 2;
 /** This method will take the current position of the payer and
@@ -26,10 +27,9 @@ static void play_display_update (tinygl_point_t playerPosition, tinygl_point_t* 
 {
     tinygl_clear();
     tinygl_draw_point (playerPosition, 1);
-    for(uint8_t i = 0; i < wantedEnemies; i++) {
+    for(uint8_t i = 0; i <= wantedEnemies; i++) {
         tinygl_draw_point(cpuPoints[i], 1);
     }
-    tinygl_update();
 }
 
 
@@ -72,8 +72,9 @@ void play (void)
 
 
     player_t player = player_init();
-    for(uint8_t i = 0; i < wantedEnemies; i++) {
-        spawnEnemy(enemyPositions, &player);
+    tinygl_point_t playerPosition = tinygl_point(player.x, player.y);
+    for(uint8_t i = 0; i <= wantedEnemies; i++) {
+        spawnEnemy(enemyPositions, &player, i, wantedEnemies);
     }
 
 
@@ -83,11 +84,10 @@ void play (void)
         navswitch_update();
         move_player(&player);
 
+
         /** update the position of the player on the grid */
-        tinygl_point_t playerPosition = tinygl_point(player.x, player.y);
-
-
-        if (timer_counter >= 500) {
+        playerPosition = tinygl_point(player.x, player.y);
+        if (timer_counter >= 100) {
             for(uint8_t i = 0; i < wantedEnemies; i++) {
                 cpuPoints[i] = tinygl_point(enemyPositions[i].x, enemyPositions[i].y);
             }
@@ -98,6 +98,8 @@ void play (void)
         Tag(enemyPositions, &player, wantedEnemies);
         play_display_update(playerPosition, cpuPoints);
         timer_counter++;
+
+
 
     }
     game_over_message(player.score);
