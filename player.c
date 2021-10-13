@@ -1,4 +1,4 @@
-/** @file game.c
+/** @file player.c
     @author Zahid Khan ZKH22
     @author Thomas Mander TCM56
     @date 05 October 2021

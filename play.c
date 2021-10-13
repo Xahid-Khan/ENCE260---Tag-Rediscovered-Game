@@ -1,4 +1,4 @@
-/** @file game.c
+/** @file play.c
     @author Zahid Khan ZKH22
     @author Thomas Mander TCM56
     @date 12 October 2021
@@ -98,7 +98,7 @@ void play (void)
             cycle_counter++;
             timer_init();
         }
-        
+
         if  (timer_get() >= 310) {
             for(uint8_t i = 0; i < wantedEnemies; i++) {
                 cpuPoints[i] = tinygl_point(enemyPositions[i].x, enemyPositions[i].y);

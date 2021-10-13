@@ -1,6 +1,6 @@
-/** @file game.c
-    @author Zahid Khan ZKH22
-    @author Thomas Mander TCM56
+/** @file display_message.c
+    @author Zahid Khan - ZKH22
+    @author Thomas Mander - TCM56
     @date 05 October 2021
     @brief This module is used for displaying messages on the LED mat.
 */

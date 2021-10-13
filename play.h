@@ -1,4 +1,4 @@
-/** @file game.c
+/** @file play.h
     @author Zahid Khan
     @date 12 October 2021
     @brief This module is used for displaing messages on the LED mat.

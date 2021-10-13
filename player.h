@@ -1,4 +1,4 @@
-/** @file game.c
+/** @file player.h
     @author Zahid Khan
     @date 01 October 2021
     @brief The start/entery to the game.
