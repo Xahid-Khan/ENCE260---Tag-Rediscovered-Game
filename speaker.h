@@ -1,7 +1,6 @@
-/** @file:      sound_effects.h
-    @author     Zahid Khan ZKH22
-    @author     Thomas Mander TCM56
-    @date:      14 OCT 2021
+/** @file:      speaker.h
+    @author:    Tawatchai Holmes (Andy) tho78, Zhedong Cao (Barry) zca19
+    @date:      15 OCT 2020
     @brief:     Speaker function in .h format
 */
 

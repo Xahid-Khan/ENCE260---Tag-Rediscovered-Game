@@ -1,9 +1,9 @@
-/** @file:   sound_effects.c
-    @author  Zahid Khan ZKH22
-    @author  Thomas Mander TCM56
-    @date:   14 OCT 2021
-    @brief:  Speaker function in .h format
+/** @file:       speaker.c
+    @author:     Tawatchai Holmes (Andy) tho78, Zhedong Cao (Barry) zca19
+    @date:       15 OCT 2020
+    @brief:      Speaker function used in game.c to give the speaker sound
 */
+
 #include "system.h"
 #include "pio.h"
 #include "pacer.h"

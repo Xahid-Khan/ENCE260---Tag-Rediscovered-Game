@@ -1,8 +1,8 @@
-/** @file display_message.c
-    @author Zahid Khan - ZKH22
-    @author Thomas Mander - TCM56
-    @date 05 October 2021
-    @brief This module is used for displaying messages on the LED mat.
+/** @file       display_message.c
+    @author     Zahid Khan - ZKH22
+    @author     Thomas Mander - TCM56
+    @date       05 October 2021
+    @brief      This module is used for displaying messages on the LED mat.
 */
 
 #include "system.h"
@@ -12,9 +12,28 @@
 #include "../fonts/font5x7_1.h"
 #include "../fonts/font3x5_1.h"
 #include <stdio.h>
+#include "sound_effects.h"
 
 #define TINYGL_PACER_RATE 500
 #define TINYGL_MESSAGE_RATE 15
+#define TONE_FREQUENCY 440
+#define LOOP_RATE (TONE_FREQUENCY * 2)
+
+/**
+    This method initiates the tinygl, set the speed, mode, selects the font and rotates the direction
+    @pram void
+    @return void
+    */
+void tinygl_game_init(void){
+    system_init();
+
+    tinygl_init(TINYGL_PACER_RATE);
+    tinygl_font_set(&font3x5_1);
+    tinygl_text_speed_set(TINYGL_MESSAGE_RATE);
+    tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
+    tinygl_text_dir_set(TINYGL_TEXT_DIR_ROTATE);
+
+}
 
 /**
     "welcome_message_display" is a method which shows a welcome message to the player and keeps displying the message in a loop until a navswitch is pushed in the center to start the game. This method takes no arguments and returns void.
@@ -23,13 +42,15 @@
 */
 void welcome_message_display (void)
 {
-    system_init();
-
-    tinygl_init(TINYGL_PACER_RATE);
-    tinygl_font_set(&font3x5_1);
-    tinygl_text_speed_set(TINYGL_MESSAGE_RATE);
-    tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
-    tinygl_text_dir_set(TINYGL_TEXT_DIR_ROTATE);
+    tinygl_game_init();
+    init_speaker();
+    pacer_init(LOOP_RATE);
+    int counter = 0;
+    while (counter < 200) {
+        pacer_wait();
+        use_speaker();
+        counter++;
+    }
 
     tinygl_text(" WELCOME TO TAG RE-DISCOVERED ");
     pacer_init (TINYGL_PACER_RATE);
@@ -44,6 +65,8 @@ void welcome_message_display (void)
         }
         tinygl_update();
     }
+
+
 }
 
 
@@ -83,18 +106,30 @@ void startup_count(void)
     */
 uint8_t game_over_message(uint16_t score)
 {
-    system_init();
+    tinygl_game_init();
+
+    pacer_init(LOOP_RATE);
+    uint16_t counter = 0;
+    while (counter < 200) {
+        pacer_wait();
+        use_speaker();
+        counter++;
+    }
+    pacer_wait();
+    pacer_wait();
+    counter = 0;
+    while (counter < 200) {
+        pacer_wait();
+        use_speaker();
+        counter++;
+    }
+
     char message[10] = "GAME OVER";
     char number[5];
     sprintf(number, "%u", score);
 
     char last_message[16];
     sprintf(last_message, "%s %s",  message, number);
-    tinygl_init(TINYGL_PACER_RATE);
-    tinygl_font_set(&font3x5_1);
-    tinygl_text_dir_set(TINYGL_TEXT_DIR_ROTATE);
-    tinygl_text_speed_set(TINYGL_MESSAGE_RATE);
-    tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
 
     tinygl_text(last_message);
     pacer_init (TINYGL_PACER_RATE);

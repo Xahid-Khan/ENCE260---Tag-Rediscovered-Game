@@ -23,7 +23,7 @@ game.o: game.c play.h ../../drivers/avr/system.h
 system.o: ../../drivers/avr/system.c ../../drivers/avr/system.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-display_message.o: display_message.c display_message.h ../../drivers/avr/system.h ../../utils/pacer.h ../../utils/tinygl.h ../../fonts/font5x7_1.h  ../../drivers/navswitch.h
+display_message.o: display_message.c display_message.h ../../drivers/avr/system.h ../../utils/pacer.h ../../utils/tinygl.h ../../fonts/font5x7_1.h  ../../drivers/navswitch.h sound_effects.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 font.o: ../../utils/font.c ../../drivers/avr/system.h ../../utils/font.h
@@ -56,10 +56,13 @@ player.o: player.c player.h ../../drivers/avr/system.h ../../drivers/navswitch.h
 play.o: play.c play.h ../../drivers/avr/system.h ../../utils/tinygl.h player.h display_message.h ../../utils/pacer.h ../../drivers/navswitch.h cpu.h ../../drivers/avr/timer.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
+sound_effects.o: sound_effects.c sound_effects.h ../../drivers/avr/system.h ../../drivers/avr/pio.h ../../utils/pacer.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
 
 
 # Link: create ELF output file from object files.
-game.out: game.o system.o display_message.o player.o play.o pacer.o tinygl.o font.o timer.o display.o ledmat.o navswitch.o cpu.o
+game.out: game.o system.o display_message.o player.o play.o pacer.o tinygl.o font.o timer.o display.o ledmat.o navswitch.o cpu.o sound_effects.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
 
