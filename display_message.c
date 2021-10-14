@@ -96,6 +96,15 @@ void startup_count(void)
             break;
         }
     }
+
+    // init_speaker();
+    pacer_init(LOOP_RATE);
+    int startup_counter = 0;
+    while (startup_counter < 200) {
+        pacer_wait();
+        use_speaker();
+        startup_counter++;
+    }
 }
 
 
@@ -128,8 +137,8 @@ uint8_t game_over_message(uint16_t score)
     char number[5];
     sprintf(number, "%u", score);
 
-    char last_message[16];
-    sprintf(last_message, "%s %s",  message, number);
+    char last_message[25];
+    sprintf(last_message, "%s SCORE-%s",  message, number);
 
     tinygl_text(last_message);
     pacer_init (TINYGL_PACER_RATE);
