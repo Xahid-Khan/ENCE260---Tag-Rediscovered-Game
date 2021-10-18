@@ -11,7 +11,8 @@
 #include "pacer.h"
 #include <stdlib.h>
 
-
+#define ROWS 7
+#define COLUMNS 5
 
 /*
     Spawns one enemy ensuring it is on a non-occupied LED
@@ -33,17 +34,17 @@ void spawnEnemy(Position_t* enemyPositions, Player_t* playerPosition, uint8_t ne
     within the LED Matrix*/
     do {
         isOccupied = false;
-        enemy.x = rand()%5;
-        enemy.y = rand()%7;
+        enemy.x = rand() % COLUMNS;
+        enemy.y = rand() % ROWS;
 
         /*Checks the new enemy position against previous enemy positions*/
-        for(uint8_t i = 0; i < wantedEnemies; i++) {
+        for (uint8_t i = 0; i < wantedEnemies; i++) {
             bool isSameX = (enemy.x == enemyPositions[i].x);
             bool isSameY = (enemy.y == enemyPositions[i].y);
 
             /*if the area is occupied by an existing enemy set the boolean for
             this as true*/
-            if(isSameX && isSameY) {
+            if (isSameX && isSameY) {
                 isOccupied = true;
             }
         }
@@ -52,10 +53,10 @@ void spawnEnemy(Position_t* enemyPositions, Player_t* playerPosition, uint8_t ne
         bool isSameY = (enemy.y == playerPosition->y);
 
         /*if the area is occupied by the player set the boolean for this as true*/
-        if(isSameX && isSameY) {
+        if (isSameX && isSameY) {
             isOccupied = true;
         }
-    } while(isOccupied);
+    } while (isOccupied);
 
     /*add new enemy to array and increase the number of enemies*/
     enemyPositions[newPosition] = enemy;
@@ -73,12 +74,12 @@ void spawnEnemy(Position_t* enemyPositions, Player_t* playerPosition, uint8_t ne
 void Tag(Position_t* enemies, Player_t* player, uint8_t wantedEnemies)
 {
     /*Runs through all enemies and checks if theire positions are the same as the player*/
-    for(uint8_t i = 0; i < wantedEnemies; i++) {
+    for (uint8_t i = 0; i < wantedEnemies; i++) {
         bool isSameX = enemies[i].x == player->x;
         bool isSameY = enemies[i].y == player->y;
 
         /*If positions are the same, spawn new enemy and increase the score*/
-        if(isSameX && isSameY) {
+        if (isSameX && isSameY) {
             update_score(player);
             update_time(player);
             spawnEnemy(enemies, player, i, wantedEnemies);
