@@ -1,11 +1,12 @@
 /** @file:      game.c
-    @author:    Tawatchai Holmes (Andy) tho78, Zhedong Cao (Barry) zca19
-    @date:      15 OCT 2020
-    @brief:     Speaker function in .h format
+    @author:    Thomas Mander TCM56
+    @author:    @author Zahid Khan ZKH22
+    @date:      18 OCT 2021
+    @brief:     Starts game
 */
 #include "play.h"
 
-/** ENTRY TO THE GAME
+/* ENTRY TO THE GAME
     */
 int main(void)
 {

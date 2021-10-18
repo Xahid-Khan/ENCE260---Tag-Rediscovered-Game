@@ -1,7 +1,8 @@
 /** @file play.h
-    @author Zahid Khan
-    @date 12 October 2021
-    @brief This module is used for displaing messages on the LED mat.
+    @author Zahid Khan ZKH22
+    @author Thomas Mander TCM56
+    @date 18 October 2021
+    @brief This module is used as the header file to manage the games timeline
 */
 
 
@@ -12,14 +13,26 @@
 #include "player.h"
 #include "cpu.h"
 
-/** Updates the LED display on LED_MAT */
+/* This method will take the current position of the player and
+    update it on the LED_MAT
+    @pram tinygl_point_t
+    @return void
+    */
 void play_display_update (tinygl_point_t pos);
 
-/** Entry point to the game and keeps the game in the loop */
+/*  This is the main game loop which initiates required modules and call the
+    required funcitons in an order and keep updating the LED mat if the
+    navswitch is pressed.
+    @pram void
+    @return void*/
 void play (void);
 
-/** Updates the players position based on the movement of JOY_STICK */
-void move_player(player_t);
+/* This Method will update the position of the player based on the input from
+    JOY_STICK
+    @pram Player_t
+    @return void
+    */
+void move_player(Player_t);
 
 
 #endif
