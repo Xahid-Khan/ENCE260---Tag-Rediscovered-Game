@@ -9,6 +9,7 @@ the players score by 5, increases the amount of game time left (by 1 second)
 and makes the tagged enemy respawn at a different, unoccupied location. The
 game always has two enemies active at any time (Enemy numbers can be easily
 changed in the code). The game starts with 10 seconds on the clock.
+Every 2 seconds the enemies respawn at a new location.
 
  After running out of time (due to not catching enough enemies) the game over
  screen will appear and display your score. The game can be restarted by
