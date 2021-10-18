@@ -34,6 +34,7 @@ void tinygl_game_init(void){
 
 }
 
+
 /*
     "welcome_message_display" is a method which shows a welcome message to the
     player and keeps displying the message in a loop until a navswitch is pushed
@@ -79,6 +80,8 @@ void welcome_message_display (void)
     */
 void startup_count(void)
 {
+    system_init();
+    tinygl_init(TINYGL_PACER_RATE);
     tinygl_font_set(&font5x7_1);
     tinygl_text_speed_set(20);
     tinygl_text_dir_set(TINYGL_TEXT_DIR_NORMAL);
