@@ -1,4 +1,4 @@
-/** @file       cpu.c
+/*  @file       cpu.c
     @author     Thomas Mander - TCM56
     @author     Zahid Khan - ZKH22
     @date       18 October 2021
@@ -13,19 +13,20 @@
 
 
 
-/*Spawns one enemy ensuring it is on a non-occupied LED
-@pram pointer to array of enemies (Position_t*)
-@pram pointer to player (Player_t*)
-@pram position in enemy array for new enemy to replace (uint8_t)
-@pram number of enemies in game (uint8_t)
-@return void*/
+/*
+    Spawns one enemy ensuring it is on a non-occupied LED
+    @pram pointer to array of enemies (Position_t*)
+    @pram pointer to player (Player_t*)
+    @pram position in enemy array for new enemy to replace (uint8_t)
+    @pram number of enemies in game (uint8_t)
+    @return void
+*/
 void spawnEnemy(Position_t* enemyPositions, Player_t* playerPosition, uint8_t newPosition, uint8_t wantedEnemies)
 {
     /*initialises a new enemy and a boolean for if the enenmy is in an occupied
     position*/
     bool isOccupied;
     Position_t enemy;
-
 
     /*While an enemies coordinates have not been generated or they lie on an
     occupied position, generate new coordinates
@@ -56,18 +57,19 @@ void spawnEnemy(Position_t* enemyPositions, Player_t* playerPosition, uint8_t ne
         }
     } while(isOccupied);
 
-
     /*add new enemy to array and increase the number of enemies*/
     enemyPositions[newPosition] = enemy;
 }
 
 
 
-/* if the player is at the same position as any enemy in an array
-@pram pointer to an array of enemies (Position_t*)
-@pram pointer to the players (Player_t*)
-@pram number of enemies in the game (uint8_t)
-@return void*/
+/*
+    If the player is at the same position as any enemy in an array
+    @pram pointer to an array of enemies (Position_t*)
+    @pram pointer to the players (Player_t*)
+    @pram number of enemies in the game (uint8_t)
+    @return void
+*/
 void Tag(Position_t* enemies, Player_t* player, uint8_t wantedEnemies)
 {
     /*Runs through all enemies and checks if theire positions are the same as the player*/
