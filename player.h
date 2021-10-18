@@ -1,8 +1,8 @@
-/** @file player.h
-    @author Zahid Khan
-    @author Thomas Mander TCM56
-    @date 18 October 2021
-    @brief Header file to declare player struct containing info/positions,
+/** @file       player.h
+    @author     Zahid Khan - ZKH22
+    @author     Thomas Mander - TCM56
+    @date       18 October 2021
+    @brief      Header file to declare player struct containing info/positions,
     update info and move.
 */
 

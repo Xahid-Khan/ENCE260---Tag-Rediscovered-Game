@@ -1,8 +1,8 @@
-# File:   Makefile
-# @author Zahid Khan ZKH22
-# @author Thomas Mander TCM56
-# Date:   12 Oct 2021
-# Descr:  Makefile for game
+# File:   	Makefile
+# @author 	Zahid Khan - ZKH22
+# @author 	Thomas Mander - TCM56
+# Date:   	18 Oct 2021
+# Descr: 	Makefile for game
 
 # Definitions.
 CC = avr-gcc

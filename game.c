@@ -1,6 +1,6 @@
 /** @file:      game.c
-    @author:    Thomas Mander TCM56
-    @author:    @author Zahid Khan ZKH22
+    @author:    Thomas Mander - TCM56
+    @author:    Zahid Khan - ZKH22
     @date:      18 OCT 2021
     @brief:     Starts game
 */

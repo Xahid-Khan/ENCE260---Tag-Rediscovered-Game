@@ -1,8 +1,8 @@
-/** @file display_message.h
-    @author Zahid Khan ZKH22
-    @author Thomas Mander TCM56
-    @date 05 October 2021
-    @brief The header file for display message module.
+/** @file       display_message.h
+    @author     Zahid Khan - ZKH22
+    @author     Thomas Mander - TCM56
+    @date       05 October 2021
+    @brief      The header file for display message module.
 */
 
 #ifndef DISPLAY_MESSAGE_H

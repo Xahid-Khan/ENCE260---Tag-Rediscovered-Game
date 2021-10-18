@@ -1,8 +1,8 @@
-/** @file cpu.h
-    @author Thomas Mander TCM56
-    @author Zahid Khan ZKH22
-    @date 18 October 2021
-    @brief This module is the header file to spawn and update enemies when
+/** @file       cpu.h
+    @author     Thomas Mander - TCM56
+    @author     Zahid Khan - ZKH22
+    @date       18 October 2021
+    @brief      This module is the header file to spawn and update enemies when
     tagged
 */
 

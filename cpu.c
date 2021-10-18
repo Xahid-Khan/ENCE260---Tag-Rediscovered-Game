@@ -1,8 +1,8 @@
-/** @file cpu.c
-    @author Thomas Mander TCM56
-    @author Zahid Khan ZKH22
-    @date 18 October 2021
-    @brief This module is used to spawn and update enemies when tagged
+/** @file       cpu.c
+    @author     Thomas Mander - TCM56
+    @author     Zahid Khan - ZKH22
+    @date       18 October 2021
+    @brief      This module is used to spawn and update enemies when tagged
 */
 
 #include "system.h"
@@ -21,12 +21,14 @@
 @return void*/
 void spawnEnemy(Position_t* enemyPositions, Player_t* playerPosition, uint8_t newPosition, uint8_t wantedEnemies)
 {
-    /*initialises a new enemy and a boolean for if the enenmy is in an occupied position*/
+    /*initialises a new enemy and a boolean for if the enenmy is in an occupied
+    position*/
     bool isOccupied;
     Position_t enemy;
 
 
-    /*While an enemies coordinates have not been generated or they lie on an occupied position, generate new coordinates
+    /*While an enemies coordinates have not been generated or they lie on an
+    occupied position, generate new coordinates
     within the LED Matrix*/
     do {
         isOccupied = false;
@@ -38,7 +40,8 @@ void spawnEnemy(Position_t* enemyPositions, Player_t* playerPosition, uint8_t ne
             bool isSameX = (enemy.x == enemyPositions[i].x);
             bool isSameY = (enemy.y == enemyPositions[i].y);
 
-            /*if the area is occupied by an existing enemy set the boolean for this as true*/
+            /*if the area is occupied by an existing enemy set the boolean for
+            this as true*/
             if(isSameX && isSameY) {
                 isOccupied = true;
             }

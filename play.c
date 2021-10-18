@@ -1,8 +1,8 @@
-/** @file play.c
-    @author Zahid Khan ZKH22
-    @author Thomas Mander TCM56
-    @date 18 October 2021
-    @brief This module provides a timeline for the game and calls required
+/** @file       play.c
+    @author     Zahid Khan - ZKH22
+    @author     Thomas Mander - TCM56
+    @date       18 October 2021
+    @brief      This module provides a timeline for the game and calls required
     functions in order to play the game.
 */
 
