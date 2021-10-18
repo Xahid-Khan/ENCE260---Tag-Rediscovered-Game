@@ -1,6 +1,7 @@
 # File:   Makefile
-# Author: M. P. Hayes, UCECE
-# Date:   12 Sep 2010
+# @author Zahid Khan ZKH22
+# @author Thomas Mander TCM56
+# Date:   12 Oct 2021
 # Descr:  Makefile for game
 
 # Definitions.
