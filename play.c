@@ -47,7 +47,7 @@ void play_display_update (tinygl_point_t playerPosition, tinygl_point_t* cpuPoin
     @pram Player_t
     @return void
     */
-void move_player(Player_t* player)
+void move_player (Player_t* player)
 {
     if (navswitch_push_event_p (NAVSWITCH_NORTH)) {
         move_up(player);
@@ -91,7 +91,7 @@ void play (void)
     tinygl_point_t playerPosition = tinygl_point(player.x, player.y);
 
     //spawn enemies and store in array
-    for(uint8_t i = 0; i <= wantedEnemies; i++) {
+    for (uint8_t i = 0; i <= wantedEnemies; i++) {
         spawnEnemy(enemyPositions, &player, i, wantedEnemies);
     }
 
@@ -121,7 +121,7 @@ void play (void)
         }
 
         //Update enemy positions at ~10kHz
-        if  (timer_get() % ENEMY_POSITION_UPDATE == 0) {
+        if (timer_get() % ENEMY_POSITION_UPDATE == 0) {
             for(uint8_t i = 0; i < wantedEnemies; i++) {
                 cpuPoints[i] = tinygl_point(enemyPositions[i].x, enemyPositions[i].y);
             }

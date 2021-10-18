@@ -23,7 +23,7 @@
     rotates the direction
     @pram void
     @return void*/
-void tinygl_game_init(void){
+void tinygl_game_init (void){
     system_init();
 
     tinygl_init(TINYGL_PACER_RATE);
@@ -31,7 +31,6 @@ void tinygl_game_init(void){
     tinygl_text_speed_set(TINYGL_MESSAGE_RATE);
     tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
     tinygl_text_dir_set(TINYGL_TEXT_DIR_ROTATE);
-
 }
 
 
@@ -69,8 +68,6 @@ void welcome_message_display (void)
         }
         tinygl_update();
     }
-
-
 }
 
 
@@ -80,7 +77,7 @@ void welcome_message_display (void)
     */
 void startup_count(void)
 {
-    system_init();
+    tinygl_clear();
     tinygl_init(TINYGL_PACER_RATE);
     tinygl_font_set(&font5x7_1);
     tinygl_text_speed_set(20);
