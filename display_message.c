@@ -47,6 +47,7 @@ void welcome_message_display (void)
     init_speaker();
     pacer_init(LOOP_RATE);
     int counter = 0;
+    // while loop plays 1 beep
     while (counter < 200) {
         pacer_wait();
         use_speaker();
@@ -57,6 +58,7 @@ void welcome_message_display (void)
     pacer_init (TINYGL_PACER_RATE);
     navswitch_init();
 
+    // displays welcome message in a loop until navswitch is pushed in.
     while(1)
     {
         pacer_wait();
@@ -77,9 +79,6 @@ void welcome_message_display (void)
     */
 void startup_count(void)
 {
-    system_init();
-
-    tinygl_init(TINYGL_PACER_RATE);
     tinygl_font_set(&font5x7_1);
     tinygl_text_speed_set(20);
     tinygl_text_dir_set(TINYGL_TEXT_DIR_NORMAL);
@@ -88,7 +87,7 @@ void startup_count(void)
     tinygl_text("321 ");
     pacer_init (TINYGL_PACER_RATE);
     uint16_t counter = 0;
-
+    //displays the count down just before the game starts
     while(1){
         pacer_wait();
         tinygl_update();
@@ -98,9 +97,11 @@ void startup_count(void)
         }
     }
 
-    // init_speaker();
+
     pacer_init(LOOP_RATE);
     int startup_counter = 0;
+
+    // Play a single been after the count down to let Player know the game has started
     while (startup_counter < 200) {
         pacer_wait();
         use_speaker();
@@ -121,6 +122,9 @@ uint8_t game_over_message(uint16_t score)
 
     pacer_init(LOOP_RATE);
     uint16_t counter = 0;
+
+    // two while loops in a row with some delay to play 2 beeps with gap at the
+    // end of the game.
     while (counter < 200) {
         pacer_wait();
         use_speaker();
@@ -146,6 +150,7 @@ uint8_t game_over_message(uint16_t score)
     pacer_init (TINYGL_PACER_RATE);
     navswitch_init();
 
+    // Displays game over message with score at the end of the game in a loop.
     while(1)
     {
         pacer_wait();

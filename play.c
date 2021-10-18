@@ -18,6 +18,9 @@
 #define PACER_RATE 250
 #define DISPLAY_TASK_RATE (PACER_RATE / 250)
 #define ONE_SECOND 31250
+#define PIXEL_NUMBER 1
+#define ENEMY_POSITION_UPDATE 3
+#define ENEMY_RESPAWN 2
 
 static uint8_t wantedEnemies = 2;
 
@@ -31,9 +34,9 @@ static uint8_t wantedEnemies = 2;
 void play_display_update (tinygl_point_t playerPosition, tinygl_point_t* cpuPoints)
 {
     tinygl_clear();
-    tinygl_draw_point (playerPosition, 1);
+    tinygl_draw_point (playerPosition, PIXEL_NUMBER);
     for(uint8_t i = 0; i <= wantedEnemies; i++) {
-        tinygl_draw_point(cpuPoints[i], 1);
+        tinygl_draw_point(cpuPoints[i], PIXEL_NUMBER);
     }
 }
 
@@ -109,9 +112,8 @@ void play (void)
             cycle_counter++;
             timer_init();
 
-            //respawn enemies every 3 seconds and store in array
-            if (cycle_counter % 2 == 0) {
-
+            //respawn enemies every 2 seconds and store in array
+            if (cycle_counter % ENEMY_RESPAWN == 0) {
                 for(uint8_t i = 0; i <= wantedEnemies; i++) {
                     spawnEnemy(enemyPositions, &player, i, wantedEnemies);
                 }
@@ -119,7 +121,7 @@ void play (void)
         }
 
         //Update enemy positions at ~10kHz
-        if  (timer_get() % 3 == 0) {
+        if  (timer_get() % ENEMY_POSITION_UPDATE == 0) {
             for(uint8_t i = 0; i < wantedEnemies; i++) {
                 cpuPoints[i] = tinygl_point(enemyPositions[i].x, enemyPositions[i].y);
             }
