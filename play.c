@@ -17,6 +17,7 @@
 
 #define PACER_RATE 250
 #define DISPLAY_TASK_RATE (PACER_RATE / 250)
+#define ONE_SECOND 31250
 
 static uint8_t wantedEnemies = 2;
 
@@ -72,7 +73,6 @@ void play (void)
     system_init ();
     navswitch_init();
     tinygl_init (DISPLAY_TASK_RATE);
-    uint16_t time_constant = 31250;
     uint16_t cycle_counter = 0;
 
     //Declare array of enemies
@@ -105,13 +105,21 @@ void play (void)
         playerPosition = tinygl_point(player.x, player.y);
 
         //ensure the timer counts approximately once a second
-        if (timer_get() >= time_constant) {
+        if (timer_get() >= ONE_SECOND) {
             cycle_counter++;
             timer_init();
+
+            //respawn enemies every 3 seconds and store in array
+            if (cycle_counter % 2 == 0) {
+
+                for(uint8_t i = 0; i <= wantedEnemies; i++) {
+                    spawnEnemy(enemyPositions, &player, i, wantedEnemies);
+                }
+            }
         }
 
-        //Update enemy positions at ~100Hz
-        if  (timer_get() % 310 == 0) {
+        //Update enemy positions at ~10kHz
+        if  (timer_get() % 3 == 0) {
             for(uint8_t i = 0; i < wantedEnemies; i++) {
                 cpuPoints[i] = tinygl_point(enemyPositions[i].x, enemyPositions[i].y);
             }
